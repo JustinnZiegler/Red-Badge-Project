@@ -57,12 +57,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlbumCreate.cs" />
+    <Compile Include="AlbumDetail.cs" />
+    <Compile Include="AlbumList.cs" />
+    <Compile Include="AlbumUpdate.cs" />
+    <Compile Include="ArtistCreate.cs" />
+    <Compile Include="ArtistDetail.cs" />
+    <Compile Include="ArtistList.cs" />
+    <Compile Include="ArtistUpdate.cs" />
+    <Compile Include="GenreCreate.cs" />
+    <Compile Include="GenreDetail.cs" />
+    <Compile Include="GenreList.cs" />
+    <Compile Include="GenreUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RatingCreate.cs" />
     <Compile Include="RatingDetail.cs" />
     <Compile Include="RatingForListInSongDetail.cs" />
     <Compile Include="RatingList.cs" />
     <Compile Include="RatingUpdate.cs" />
+    <Compile Include="SongCreate.cs" />
+    <Compile Include="SongDetail.cs" />
+    <Compile Include="SongList.cs" />
+    <Compile Include="SongUpdate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
