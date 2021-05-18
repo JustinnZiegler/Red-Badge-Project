@@ -16,6 +16,6 @@ namespace RedBadgeProject_Models
 
         public DateTime AlbumReleaseDate { get; set; }
 
-        public List<Song> SongsByArtist { get; set; } = new List<Song>();
+        public List<string> SongTitlesByAlbum { get; set; } = new List<string>();
     }
 }
