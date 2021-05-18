@@ -44,7 +44,7 @@ namespace RedBadgeProject_Data
                 double totalRating = 0;
                 foreach (Rating rating in RatingsForSong)
                 {
-                    totalRating += rating.AverageRating;
+                    totalRating += rating.ScoreAverage;
                 }
 
                 return RatingsForSong.Count > 0 ? Math.Round(totalRating / RatingsForSong.Count, 2) : 0;

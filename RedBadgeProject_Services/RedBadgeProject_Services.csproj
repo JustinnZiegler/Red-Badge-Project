@@ -57,11 +57,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlbumService.cs" />
+    <Compile Include="ArtistService.cs" />
+    <Compile Include="GenreService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RatingService.cs" />
+    <Compile Include="SongService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RedBadgeProject_Data\RedBadgeProject_Data.csproj">
+      <Project>{efe53b1b-4545-43ff-9c84-fcac8f172228}</Project>
+      <Name>RedBadgeProject_Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RedBadgeProject_Models\RedBadgeProject_Models.csproj">
+      <Project>{3a686d71-ec62-43cd-b71a-3af6141a057a}</Project>
+      <Name>RedBadgeProject_Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

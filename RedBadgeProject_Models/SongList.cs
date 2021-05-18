@@ -14,6 +14,6 @@ namespace RedBadgeProject_Models
 
         public string ArtistName { get; set; }
 
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
     }
 }

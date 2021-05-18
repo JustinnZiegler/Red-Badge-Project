@@ -15,6 +15,6 @@ namespace RedBadgeProject_Data
         [Required]
         public string GenreName { get; set; }
 
-        public List<Song> SongsByArtist { get; set; } = new List<Song>();
+        public List<Song> SongsInGenre { get; set; } = new List<Song>();
     }
 }

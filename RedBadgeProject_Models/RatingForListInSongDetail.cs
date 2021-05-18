@@ -10,7 +10,7 @@ namespace RedBadgeProject_Models
     {
         public Guid UserId { get; set; }
 
-        public double AverageRating { get; set; }
+        public double ScoreAverage { get; set; }
 
         public string Description { get; set; }
     }

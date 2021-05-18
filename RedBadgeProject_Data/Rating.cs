@@ -23,7 +23,7 @@ namespace RedBadgeProject_Data
         public double ArtistStyleScore { get; set; }
 
         [Range(0, 5)]
-        public double AverageRating
+        public double ScoreAverage
         {
             get
             {
