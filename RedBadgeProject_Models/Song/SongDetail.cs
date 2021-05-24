@@ -12,15 +12,21 @@ namespace RedBadgeProject_Models
     {
         public int SongId { get; set; }
 
-        public string Title { get; set; }
+        public int ArtistId { get; set; }
 
         public string ArtistName { get; set; }
 
-        public string GenreName { get; set; }
+        public int GenreId { get; set; }
 
-        public string AlbumName { get; set; }
+        public string Title { get; set; }
 
-        public string Date { get; set; }
+        //public Artist Artist { get; set; }
+
+        //public Genre Genre { get; set; }
+
+        //public Album Album { get; set; }
+
+        public DateTime Date { get; set; }
 
         public List<RatingForListInSongDetail> RatingsForSong { get; set; } = new List<RatingForListInSongDetail>();
 

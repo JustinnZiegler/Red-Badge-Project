@@ -11,15 +11,21 @@ namespace RedBadgeProject_Services
 {
     public class SongService
     {
+        private readonly Guid _userId;
+        public SongService(Guid userId)
+        {
+            _userId = userId;
+        }
         public bool CreateSong(SongCreate model)
         {
             var entity = new Song()
             {
+                OwnerId = _userId,
                 Title = model.Title,
                 ArtistId = model.ArtistId,
                 GenreId = model.GenreId,
-                AlbumId = model.AlbumId,
-                Date = model.Date
+                //AlbumId = model.AlbumId,
+                Date = model.Date,
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -27,11 +33,11 @@ namespace RedBadgeProject_Services
                 ctx.Songs.Add(entity);
                 var artistEntity = ctx.Artists.Find(model.ArtistId);
                 var genreEntity = ctx.Genres.Find(model.GenreId);
-                var albumEntity = ctx.Albums.Find(model.AlbumId);
+                //var albumEntity = ctx.Albums.Find(model.AlbumId);
 
                 artistEntity.SongsByArtist.Add(entity);
                 genreEntity.SongsInGenre.Add(entity);
-                albumEntity.SongsInAlbum.Add(entity);
+                //albumEntity.SongsInAlbum.Add(entity);
 
                 return ctx.SaveChanges() == 1;
             }
@@ -87,8 +93,10 @@ namespace RedBadgeProject_Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Songs.Include(e => e.Artist).Include(e => e.Album).Include(e => e.Genre).Include(e => e.RatingsForSong)
-                    .Single(e => e.SongId == songId);
+                var entity = ctx.Songs.Find(songId);
+
+                //var entity = ctx.Songs.Include(e => e.Artist).Include(e => e.Album).Include(e => e.Genre).Include(e => e.RatingsForSong)
+                   // .Single(e => e.SongId == songId);
 
                 var listOfRatings = new List<RatingForListInSongDetail>();
                 foreach (var rating in entity.RatingsForSong)
@@ -104,10 +112,10 @@ namespace RedBadgeProject_Services
                 {
                     SongId = entity.SongId,
                     Title = entity.Title,
-                    ArtistName = entity.Artist.ArtistName,
-                    GenreName = entity.Genre.GenreName,
-                    AlbumName = entity.Album.AlbumName,
-                    Date = entity.Date.ToShortDateString(),
+                    //Artist = entity.Artist,
+                    //Genre = entity.Genre,
+                    //Album = entity.Album,
+                    Date = entity.Date,
                     AverageRating = entity.AverageRating,
                     IsRecommended = entity.IsRecommended,
                     RatingsForSong = listOfRatings
@@ -119,8 +127,9 @@ namespace RedBadgeProject_Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Songs.Include(e => e.Artist).Include(e => e.Album).Include(e => e.Genre).Include(e => e.RatingsForSong)
-                    .Single(e => e.Title == songName);
+                var entity = ctx.Songs.Find(songName);
+                //var entity = ctx.Songs.Include(e => e.Artist).Include(e => e.Album).Include(e => e.Genre).Include(e => e.RatingsForSong)
+                //    .Single(e => e.Title == songName);
 
                 var listOfRatings = new List<RatingForListInSongDetail>();
                 foreach (var rating in entity.RatingsForSong)
@@ -137,9 +146,10 @@ namespace RedBadgeProject_Services
                     SongId = entity.SongId,
                     Title = entity.Title,
                     ArtistName = entity.Artist.ArtistName,
-                    GenreName = entity.Genre.GenreName,
-                    AlbumName = entity.Album.AlbumName,
-                    Date = entity.Date.ToShortDateString(),
+                    ArtistId = (int)entity.ArtistId,
+                    GenreId = entity.GenreId,
+                    //Album = entity.Album,
+                    Date = entity.Date,
                     AverageRating = entity.AverageRating,
                     IsRecommended = entity.IsRecommended,
                     RatingsForSong = listOfRatings
@@ -153,15 +163,15 @@ namespace RedBadgeProject_Services
             {
                 var entity = ctx.Songs.Find(model.SongId);
 
-                int artistId = entity.ArtistId;
+                int? artistId = entity.ArtistId;
                 int genreId = entity.GenreId;
-                int albumId = entity.AlbumId;
+                //int albumId = entity.AlbumId;
 
                 entity.Title = model.Title;
                 entity.Date = model.Date;
                 entity.ArtistId = model.ArtistId;
                 entity.GenreId = model.GenreId;
-                entity.AlbumId = model.AlbumId;
+                //entity.AlbumId = model.AlbumId;
 
                 if (artistId != entity.ArtistId)
                 {
@@ -179,14 +189,14 @@ namespace RedBadgeProject_Services
                     var newGenreEntity = ctx.Genres.Find(entity.GenreId);
                     newGenreEntity.SongsInGenre.Add(entity);
                 }
-                if (albumId != entity.AlbumId)
-                {
-                    var albumEntity = ctx.Albums.Find(albumId);
-                    albumEntity.SongsInAlbum.Remove(entity);
+                //if (albumId != entity.AlbumId)
+                //{
+                //    var albumEntity = ctx.Albums.Find(albumId);
+                //    albumEntity.SongsInAlbum.Remove(entity);
 
-                    var newAlbumEntity = ctx.Albums.Find(entity.AlbumId);
-                    newAlbumEntity.SongsInAlbum.Add(entity);
-                }
+                //    var newAlbumEntity = ctx.Albums.Find(entity.AlbumId);
+                //    newAlbumEntity.SongsInAlbum.Add(entity);
+                //}
 
                 return ctx.SaveChanges() == 1;
             }

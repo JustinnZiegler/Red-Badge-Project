@@ -10,7 +10,7 @@ namespace RedBadgeProject_Models
     {
         public int ArtistId { get; set; }
         public string ArtistName { get; set; }
-        public string Birthdate { get; set; }
+        public DateTime Birthdate { get; set; }
         public List<string> NamesOfSongsByArtist { get; set; } = new List<string>();
     }
 }

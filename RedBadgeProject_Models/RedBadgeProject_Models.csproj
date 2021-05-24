@@ -57,28 +57,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlbumCreate.cs" />
-    <Compile Include="AlbumDetail.cs" />
-    <Compile Include="AlbumList.cs" />
-    <Compile Include="AlbumUpdate.cs" />
-    <Compile Include="ArtistCreate.cs" />
-    <Compile Include="ArtistDetail.cs" />
-    <Compile Include="ArtistList.cs" />
-    <Compile Include="ArtistUpdate.cs" />
-    <Compile Include="GenreCreate.cs" />
-    <Compile Include="GenreDetail.cs" />
-    <Compile Include="GenreList.cs" />
-    <Compile Include="GenreUpdate.cs" />
+    <Compile Include="Album\AlbumCreate.cs" />
+    <Compile Include="Album\AlbumDetail.cs" />
+    <Compile Include="Album\AlbumList.cs" />
+    <Compile Include="Album\AlbumUpdate.cs" />
+    <Compile Include="Artist\ArtistCreate.cs" />
+    <Compile Include="Artist\ArtistDetail.cs" />
+    <Compile Include="Artist\ArtistList.cs" />
+    <Compile Include="Artist\ArtistUpdate.cs" />
+    <Compile Include="Genre\GenreCreate.cs" />
+    <Compile Include="Genre\GenreDetail.cs" />
+    <Compile Include="Genre\GenreList.cs" />
+    <Compile Include="Genre\GenreUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RatingCreate.cs" />
-    <Compile Include="RatingDetail.cs" />
-    <Compile Include="RatingForListInSongDetail.cs" />
-    <Compile Include="RatingList.cs" />
-    <Compile Include="RatingUpdate.cs" />
-    <Compile Include="SongCreate.cs" />
-    <Compile Include="SongDetail.cs" />
-    <Compile Include="SongList.cs" />
-    <Compile Include="SongUpdate.cs" />
+    <Compile Include="Rating\RatingCreate.cs" />
+    <Compile Include="Rating\RatingDetail.cs" />
+    <Compile Include="Rating\RatingForListInSongDetail.cs" />
+    <Compile Include="Rating\RatingList.cs" />
+    <Compile Include="Rating\RatingUpdate.cs" />
+    <Compile Include="Song\SongCreate.cs" />
+    <Compile Include="Song\SongDetail.cs" />
+    <Compile Include="Song\SongList.cs" />
+    <Compile Include="Song\SongUpdate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -90,6 +90,7 @@
       <Name>RedBadgeProject_Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -41,5 +41,7 @@ namespace RedBadgeProject_Data
         public int SongId { get; set; }
 
         public Song Song { get; set; }
+
+        public virtual List<Rating> RatingsForSong { get; set; } = new List<Rating>();
     }
 }

@@ -11,6 +11,11 @@ namespace RedBadgeProject_Services
 {
     public class GenreService
     {
+        private readonly Guid _userId;
+        public GenreService(Guid userId)
+        {
+            _userId = userId;
+        }
         public bool CreateGenre(GenreCreate model)
         {
             var entity = new Genre()
@@ -60,46 +65,68 @@ namespace RedBadgeProject_Services
             }
         }
 
-        public GenreDetail GetGenreByGenreName(string genreName)
+        public GenreDetail GetGenreById(int genreId)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Genres.Include(e => e.SongsInGenre).Single(e => genreName == e.GenreName);
+                var entity = ctx.Genres.Include(e => e.SongsInGenre).Single(e => genreId == e.GenreId);
 
-                var titlesOfSongsInGenre = new List<string>();
+                var namesOfSongs = new List<string>();
 
                 foreach (var song in entity.SongsInGenre)
                 {
-                    titlesOfSongsInGenre.Add(song.Title);
+                    namesOfSongs.Add(song.Title);
                 }
 
                 return new GenreDetail()
                 {
                     GenreId = entity.GenreId,
                     GenreName = entity.GenreName,
-                    SongTitlesInGenre = titlesOfSongsInGenre
+                    SongTitlesInGenre = namesOfSongs
                 };
             }
         }
 
-        public bool UpdateGenre(GenreUpdate model)
-        {
-            using (var ctx = new ApplicationDbContext())
+            public GenreDetail GetGenreByName(string genreName)
             {
-                var entity = ctx.Genres.Single(e => e.GenreId == model.GenreId);
-                entity.GenreName = model.GenreName;
-                return ctx.SaveChanges() == 1;
-            }
-        }
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity = ctx.Genres.Include(e => e.SongsInGenre).Single(e => genreName == e.GenreName);
 
-        public bool DeleteGenre(int genreId)
-        {
-            using (var ctx = new ApplicationDbContext())
+                    var titlesOfSongsInGenre = new List<string>();
+
+                    foreach (var song in entity.SongsInGenre)
+                    {
+                        titlesOfSongsInGenre.Add(song.Title);
+                    }
+
+                    return new GenreDetail()
+                    {
+                        GenreId = entity.GenreId,
+                        GenreName = entity.GenreName,
+                        SongTitlesInGenre = titlesOfSongsInGenre
+                    };
+                }
+            }
+
+            public bool UpdateGenre(GenreUpdate model)
             {
-                var entity = ctx.Genres.Single(e => e.GenreId == genreId);
-                ctx.Genres.Remove(entity);
-                return ctx.SaveChanges() == 1;
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity = ctx.Genres.Single(e => e.GenreId == model.GenreId);
+                    entity.GenreName = model.GenreName;
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+
+            public bool DeleteGenre(int genreId)
+            {
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity = ctx.Genres.Single(e => e.GenreId == genreId);
+                    ctx.Genres.Remove(entity);
+                    return ctx.SaveChanges() == 1;
+                }
             }
         }
     }
-}

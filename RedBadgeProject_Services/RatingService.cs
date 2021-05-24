@@ -11,7 +11,6 @@ namespace RedBadgeProject_Services
     public class RatingService
     {
         private readonly Guid _userId;
-
         public RatingService(Guid userId)
         {
             _userId = userId;
@@ -38,6 +37,46 @@ namespace RedBadgeProject_Services
                 songEntity.RatingsForSong.Add(entity);
 
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IEnumerable<RatingList> GetRatings()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx.Ratings.Select(e =>
+                new RatingList()
+                {
+                    RatingId = e.RatingId,
+                    EnjoymentScore = e.EnjoymentScore,
+                    SongLengthScore = e.SongLengthScore,
+                    ArtistStyleScore = e.ArtistStyleScore
+                });
+
+                return query.ToArray();
+            }
+        }
+
+        public RatingDetail GetRatingById(int ratingId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx.Ratings.Find(ratingId);
+
+                var listOfRatings = new List<double>();
+                foreach (var rating in entity.RatingsForSong)
+                {
+                    listOfRatings.Add(rating.ScoreAverage);
+                }
+
+                return new RatingDetail()
+                {
+                    RatingId = entity.RatingId,
+                    EnjoymentScore = entity.EnjoymentScore,
+                    SongLengthScore = entity.SongLengthScore,
+                    ArtistStyleScore = entity.ArtistStyleScore,
+                    Description = entity.Description
+                };
             }
         }
 

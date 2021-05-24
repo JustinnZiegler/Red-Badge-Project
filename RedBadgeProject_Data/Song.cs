@@ -18,19 +18,19 @@ namespace RedBadgeProject_Data
         public string Title { get; set; }
 
         [ForeignKey(nameof(Artist))]
-        public int ArtistId { get; set; }
+        public int? ArtistId { get; set; }
 
-        public Artist Artist { get; set; }
+        public virtual Artist Artist { get; set; }
 
         [ForeignKey(nameof(Genre))]
         public int GenreId { get; set; }
 
-        public Genre Genre { get; set; }
+        public virtual Genre Genre { get; set; }
 
-        [ForeignKey(nameof(Album))]
-        public int AlbumId { get; set; }
+        //[ForeignKey(nameof(Album))]
+        //public int AlbumId { get; set; }
 
-        public Album Album { get; set; }
+        //public virtual Album Album { get; set; }
 
         [Required]
         public DateTime Date { get; set; }
@@ -50,6 +50,8 @@ namespace RedBadgeProject_Data
                 return RatingsForSong.Count > 0 ? Math.Round(totalRating / RatingsForSong.Count, 2) : 0;
             }
         }
+
+        public Guid OwnerId { get; set; }
 
         public bool IsRecommended
         {

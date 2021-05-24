@@ -11,12 +11,19 @@ namespace RedBadgeProject_Services
 {
     public class AlbumService
     {
+        private readonly Guid _userId;
+        public AlbumService(Guid userId)
+        {
+            _userId = userId;
+        }
         public bool CreateAlbum(AlbumCreate model)
         {
             var entity = new Album()
             {
+                ArtistId = model.ArtistId,
                 AlbumName = model.AlbumName,
-                AlbumReleaseDate = model.AlbumReleaseDate
+                SongId = model.SongId,
+                AlbumReleaseDate = model.AlbumReleaseDate,
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -26,7 +33,7 @@ namespace RedBadgeProject_Services
             }
         }
 
-        public IEnumerable<AlbumList> GetAllAlbums()
+        public IEnumerable<AlbumList> GetAlbums()
         {
             using (var ctx = new ApplicationDbContext())
             {

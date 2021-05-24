@@ -11,6 +11,11 @@ namespace RedBadgeProject_Services
 {
     public class ArtistService
     {
+        private readonly Guid _userId;
+        public ArtistService(Guid userId)
+        {
+            _userId = userId;
+        }
         public bool CreateArtist(ArtistCreate model)
         {
             var entity =
@@ -42,47 +47,47 @@ namespace RedBadgeProject_Services
             }
         }
 
-        public ArtistDetail GetArtistByArtistId(int artistId)
+        public ArtistDetail GetArtistById(int artistId)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Artists.Include(e => e.SongsByArtist).Single(e => artistId == e.ArtistId);
+                var entity = ctx.Artists.Include(e => e.Albums).Single(e => artistId == e.ArtistId);
 
                 var namesOfSongs = new List<string>();
 
-                foreach (var song in entity.SongsByArtist)
+                foreach (var song in entity.Albums)
                 {
-                    namesOfSongs.Add(song.Title);
+                    namesOfSongs.Add(song.Titles);
                 }
 
                 return new ArtistDetail()
                 {
                     ArtistId = entity.ArtistId,
                     ArtistName = entity.ArtistName,
-                    Birthdate = entity.Birthdate.ToShortDateString(),
+                    Birthdate = entity.Birthdate,
                     NamesOfSongsByArtist = namesOfSongs
                 };
             }
         }
 
-        public ArtistDetail GetArtistByArtistName(string artistName)
+        public ArtistDetail GetArtistByName(string artistName)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity = ctx.Artists.Include(e => e.SongsByArtist).Single(e => artistName == e.ArtistName);
+                var entity = ctx.Artists.Include(e => e.Albums).Single(e => artistName == e.ArtistName);
 
                 var namesOfSongs = new List<string>();
 
-                foreach (var song in entity.SongsByArtist)
+                foreach (var song in entity.Albums)
                 {
-                    namesOfSongs.Add(song.Title);
+                    namesOfSongs.Add(song.Titles);
                 }
 
                 return new ArtistDetail()
                 {
                     ArtistId = entity.ArtistId,
                     ArtistName = entity.ArtistName,
-                    Birthdate = entity.Birthdate.ToShortDateString(),
+                    Birthdate = entity.Birthdate,
                     NamesOfSongsByArtist = namesOfSongs
                 };
             }

@@ -61,6 +61,31 @@
     <Compile Include="Artist.cs" />
     <Compile Include="Genre.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202105192003057_InitialCreate.cs" />
+    <Compile Include="Migrations\202105192003057_InitialCreate.designer.cs">
+      <DependentUpon>202105192003057_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105192026527_Second Migration.cs" />
+    <Compile Include="Migrations\202105192026527_Second Migration.designer.cs">
+      <DependentUpon>202105192026527_Second Migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105220006350_NextMigration.cs" />
+    <Compile Include="Migrations\202105220006350_NextMigration.designer.cs">
+      <DependentUpon>202105220006350_NextMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105222250304_ChangedControllers.cs" />
+    <Compile Include="Migrations\202105222250304_ChangedControllers.designer.cs">
+      <DependentUpon>202105222250304_ChangedControllers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105230022548_Debugging.cs" />
+    <Compile Include="Migrations\202105230022548_Debugging.designer.cs">
+      <DependentUpon>202105230022548_Debugging.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105230235025_MoreDebugging.cs" />
+    <Compile Include="Migrations\202105230235025_MoreDebugging.designer.cs">
+      <DependentUpon>202105230235025_MoreDebugging.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rating.cs" />
     <Compile Include="Song.cs" />
@@ -68,6 +93,26 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202105192003057_InitialCreate.resx">
+      <DependentUpon>202105192003057_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105192026527_Second Migration.resx">
+      <DependentUpon>202105192026527_Second Migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105220006350_NextMigration.resx">
+      <DependentUpon>202105220006350_NextMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105222250304_ChangedControllers.resx">
+      <DependentUpon>202105222250304_ChangedControllers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105230022548_Debugging.resx">
+      <DependentUpon>202105230022548_Debugging.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105230235025_MoreDebugging.resx">
+      <DependentUpon>202105230235025_MoreDebugging.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
