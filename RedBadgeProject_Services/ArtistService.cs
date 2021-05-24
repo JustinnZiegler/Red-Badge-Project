@@ -57,7 +57,7 @@ namespace RedBadgeProject_Services
 
                 foreach (var song in entity.Albums)
                 {
-                    namesOfSongs.Add(song.Titles);
+                    namesOfSongs.Add(song.Song.Title);
                 }
 
                 return new ArtistDetail()

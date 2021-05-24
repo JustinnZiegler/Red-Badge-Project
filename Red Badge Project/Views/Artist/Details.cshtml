@@ -28,9 +28,21 @@
             @Html.DisplayFor(model => model.Birthdate)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.NamesOfSongsByArtist)
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.NamesOfSongsByArtist)
+            {
+
+                @Html.DisplayFor(model => item)
+            }
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Update", new { id = Model.ArtistId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
